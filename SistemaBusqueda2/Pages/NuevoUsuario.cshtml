@@ -1,0 +1,48 @@
+﻿@page
+@model SistemaBusqueda2.Pages.NuevoUsuarioModel
+@{
+}
+
+<div class="container">
+    <h3>Nuevo Usuario</h3>
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group">
+                    <label>Nombre usuario</label>
+                    <input class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Nombres</label>
+                    <input class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Rol</label>
+                    <select class="form-control">
+                        <option value="">--Selecione--</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Supervisor</option>
+                        <option value="3">Vendedor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input class="form-control" type="password" />
+                </div>
+                <div class="form-group">
+                    <label>Repetir Contraseña</label>
+                    <input class="form-control" type="password" />
+                </div>
+                <a asp-page="Usuarios" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
