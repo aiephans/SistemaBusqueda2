@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SistemaBusqueda2.Repositorios;
 
 namespace SistemaBusqueda2.Pages
 {
@@ -53,10 +54,16 @@ namespace SistemaBusqueda2.Pages
             {
                 var password = this.Password;
                 var repassword = this.RePassword;
-           
-
-
-                return Page();
+                //Valido si las contraseñas son iguales
+                if (password != repassword)
+                {
+                    ModelState.AddModelError(string.Empty, "Las contraseñas no coinciden");
+                    return Page();
+                }
+                //Guardar el usuario en la BD
+                var repo = new UsuarioRepositorio();
+                repo.InsertarUsuario(this.Nombres, this.Apellidos, (int)this.RolId, this.NombreUsuario, this.Password);
+                return RedirectToPage("./Usuarios");
             }
 
             return Page();
