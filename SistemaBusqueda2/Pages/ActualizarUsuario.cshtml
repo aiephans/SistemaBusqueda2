@@ -1,0 +1,55 @@
+﻿@page
+@model SistemaBusqueda2.Pages.ActualizarUsuarioModel
+@{
+}
+
+<div class="container">
+    <h3>Actualizar Usuario</h3>
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="NombreUsuario"></label>
+                    <input asp-for="NombreUsuario" class="form-control" type="text" />
+                    <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nombres"></label>
+                    <input asp-for="Nombres" class="form-control" type="text" />
+                    <span asp-validation-for="Nombres" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Apellidos"></label>
+                    <input asp-for="Apellidos" class="form-control" type="text" />
+                    <span asp-validation-for="Apellidos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RolId"></label>
+                    <select asp-for="RolId" class="form-control">
+                        <option value="">--Selecione--</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Supervisor</option>
+                        <option value="3">Vendedor</option>
+                    </select>
+                    <span asp-validation-for="RolId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    @Html.PasswordFor(model=>model.Password,new {@value=Model.Password , @class= "form-control" })
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RePassword"></label>
+                    @Html.PasswordFor(model => model.RePassword, new { @value = Model.RePassword, @class = "form-control" })
+                    <span asp-validation-for="RePassword" class="text-danger"></span>
+                </div>
+                <a asp-page="Usuarios" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <div asp-validation-summary="All" class="text-danger mt-4"></div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

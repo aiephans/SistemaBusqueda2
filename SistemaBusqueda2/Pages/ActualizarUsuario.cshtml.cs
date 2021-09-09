@@ -10,11 +10,13 @@ using SistemaBusqueda2.Repositorios;
 
 namespace SistemaBusqueda2.Pages
 {
-    public class NuevoUsuarioModel : PageModel
+    public class ActualizarUsuarioModel : PageModel
     {
         [BindProperty]
-        [Display(Name ="Nombre de usuario")]
-        [Required(ErrorMessage ="El campo Nombre de usuario es requerido")]
+        public int Id { get; set; }
+        [BindProperty]
+        [Display(Name = "Nombre de usuario")]
+        [Required(ErrorMessage = "El campo Nombre de usuario es requerido")]
         public string NombreUsuario { get; set; }
         [BindProperty]
         [Required(ErrorMessage = "El campo Nombres es requerido")]
@@ -29,8 +31,8 @@ namespace SistemaBusqueda2.Pages
         [BindProperty]
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "El campo Contraseña es requerido")]
-        [MinLength(8,ErrorMessage ="La contraseña debe tener al menos 8 caracteres")]
-        [RegularExpression("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$",ErrorMessage ="La contraseña debe tener al menos una Mayuscula, minusculas y digitos")]
+        [MinLength(8, ErrorMessage = "La contraseña debe tener al menos 8 caracteres")]
+        [RegularExpression("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$", ErrorMessage = "La contraseña debe tener al menos una Mayuscula, minusculas y digitos")]
         public string Password { get; set; }
         [BindProperty]
         [Display(Name = "Repetir contraseña")]
@@ -38,44 +40,29 @@ namespace SistemaBusqueda2.Pages
         [MinLength(8, ErrorMessage = "La contraseña debe tener al menos 8 caracteres")]
         [RegularExpression("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$", ErrorMessage = "La contraseña debe tener al menos una Mayuscula, minusculas y digitos")]
         public string RePassword { get; set; }
-        public ActionResult OnGet()
+        public ActionResult OnGet(int id)
         {
             var idSession = HttpContext.Session.GetString("idSession");
             if (string.IsNullOrEmpty(idSession))
             {
                 return RedirectToPage("./Index");
             }
-            return Page();
-        }
 
-        public IActionResult OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                var password = this.Password;
-                var repassword = this.RePassword;
-                //Valido si las contraseñas son iguales
-                if (password != repassword)
-                {
-                    ModelState.AddModelError(string.Empty, "Las contraseñas no coinciden");
-                    return Page();
-                }
-                var repo = new UsuarioRepositorio();
-                //Validar que no exista el nombre de usuario
-                if (repo.ExisteNombreUsuario(this.NombreUsuario))
-                {
-                    ModelState.AddModelError(string.Empty, "El nombre de usuario ya se encuentra registrado en la base de datos");
-                    return Page();
-                }
+            var usuarioId = id;
 
-                //Guardar el usuario en la BD
+            //buscar el usuario en la BD
 
-                repo.InsertarUsuario(this.Nombres, this.Apellidos, (int)this.RolId, this.NombreUsuario, this.Password);
-                return RedirectToPage("./Usuarios");
-            }
+            var repo = new UsuarioRepositorio();
+            var usuario = repo.ObtenerUsuarioPorId(usuarioId);
+            this.Id = usuario.Id;
+            this.Nombres = usuario.Nombres;
+            this.Apellidos = usuario.Apellidos;
+            this.NombreUsuario = usuario.NombreUsuario;
+            this.RolId = usuario.RolId;
+            this.Password = usuario.Password;
+            this.RePassword = usuario.Password;
 
             return Page();
         }
-
     }
 }

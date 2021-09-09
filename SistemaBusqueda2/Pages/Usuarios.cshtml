@@ -38,90 +38,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Usuario 1
-                        </td>
-                        <td>
-                            Nombre 1
-                        </td>
-                        <td>
-                            Apellido 1
-                        </td>
-                        <td>
-                            Rol 1
-                        </td>
-                        <td>
-                            <button class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            Usuario 2
-                        </td>
-                        <td>
-                            Nombre 2
-                        </td>
-                        <td>
-                            Apellido 2
-                        </td>
-                        <td>
-                            Rol 2
-                        </td>
-                        <td>
-                            <button class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            3
-                        </td>
-                        <td>
-                            Usuario 3
-                        </td>
-                        <td>
-                            Nombre 3
-                        </td>
-                        <td>
-                            Apellido 3
-                        </td>
-                        <td>
-                            Rol 3
-                        </td>
-                        <td>
-                            <button class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            4
-                        </td>
-                        <td>
-                            Usuario 4
-                        </td>
-                        <td>
-                            Nombre 4
-                        </td>
-                        <td>
-                            Apellido 4
-                        </td>
-                        <td>
-                            Rol 4
-                        </td>
-                        <td>
-                            <button class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    @foreach (var usuario in Model.Usuarios)
+                    {
+                        <tr>
+                            <td>
+                                @usuario.Id
+                            </td>
+                            <td>
+                                @usuario.NombreUsuario
+                            </td>
+                            <td>
+                                @usuario.Nombres
+                            </td>
+                            <td>
+                                @usuario.Apellidos
+                            </td>
+                            <td>
+                                @usuario.RolId
+                            </td>
+                            <td>
+                                <a asp-page="ActualizarUsuario" asp-route-id="@usuario.Id" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
