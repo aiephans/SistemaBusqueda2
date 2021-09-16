@@ -1,0 +1,16 @@
+﻿@page
+@model SistemaBusqueda2.Pages.EliminarRolModel
+@{
+}
+<h3>Eliminar Rol</h3>
+<hr />
+
+<div class="card">
+    <div class="card-body">
+        <p>¿Esta seguro de eliminar el rol : @Model.Nombre?</p>
+        <form method="post">
+            <a asp-page="Roles" class="btn btn-secondary">Volver</a>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>

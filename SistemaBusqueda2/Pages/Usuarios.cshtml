@@ -57,8 +57,9 @@
                                 @usuario.RolId
                             </td>
                             <td>
-                                <a asp-page="ActualizarUsuario" asp-route-id="@usuario.Id" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                <a asp-page="ActualizarUsuario" asp-route-id="@usuario.Id" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar usuario"><i class="bi bi-pencil-square"></i></a>
+                                <a asp-page="EliminarUsuario" asp-route-id="@usuario.Id" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar usuario usuario"><i class="bi bi-trash"></i></a>
+                                <a asp-page="ActualizarPassword" asp-route-id="@usuario.Id" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Cambiar contraseña"><i class="bi bi-key"></i></a>
                             </td>
                         </tr>
                     }

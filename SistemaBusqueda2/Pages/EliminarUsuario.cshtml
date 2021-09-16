@@ -1,0 +1,17 @@
+﻿@page
+@model SistemaBusqueda2.Pages.EliminarUsuarioModel
+@{
+}
+<h3>Eliminar Usuario</h3>
+<hr />
+
+<div class="card">
+    <div class="card-body">
+        <p>¿Esta seguro de eliminar al usuario : @Model.NombreUsuario?</p>
+        <form method="post">
+            <a asp-page="Usuarios" class="btn btn-secondary">Volver</a>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+

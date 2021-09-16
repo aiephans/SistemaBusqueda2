@@ -1,0 +1,21 @@
+﻿@page
+@model SistemaBusqueda2.Pages.ActualizarRolModel
+@{
+}
+<h3>Actualizar Rol</h3>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" class="form-control" type="text" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <a asp-page="Roles" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <div asp-validation-summary="All" class="text-danger mt-4"></div>
+        </form>
+    </div>
+
+</div>

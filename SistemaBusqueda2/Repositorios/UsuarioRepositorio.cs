@@ -95,5 +95,42 @@ namespace SistemaBusqueda2.Repositorios
             }
             return respuesta;
         }
+
+        public void ActualizarUsuario(int id,string nombres, string apellidos, int rolId)
+        {
+            string connectionString = "server=localhost;database=sistemaBusqueda2;Integrated Security = true;";
+            using SqlConnection sql = new SqlConnection(connectionString);
+            using SqlCommand cmd = new SqlCommand("sp_actualiza_usuario", sql);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id", id));
+            cmd.Parameters.Add(new SqlParameter("@nombres", nombres));
+            cmd.Parameters.Add(new SqlParameter("@apellidos", apellidos));
+            cmd.Parameters.Add(new SqlParameter("@rolId", rolId));
+            sql.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void ActualizarPassword(int id, string password)
+        {
+            string connectionString = "server=localhost;database=sistemaBusqueda2;Integrated Security = true;";
+            using SqlConnection sql = new SqlConnection(connectionString);
+            using SqlCommand cmd = new SqlCommand("sp_actualizar_password", sql);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id", id));
+            cmd.Parameters.Add(new SqlParameter("@password", password));
+            sql.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        public void EliminarUsuario(int id)
+        {
+            string connectionString = "server=localhost;database=sistemaBusqueda2;Integrated Security = true;";
+            using SqlConnection sql = new SqlConnection(connectionString);
+            using SqlCommand cmd = new SqlCommand("sp_eliminar_usuario", sql);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id", id));
+            sql.Open();
+            cmd.ExecuteNonQuery();
+        }
     }
 }
